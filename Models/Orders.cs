@@ -5,7 +5,7 @@ namespace Models
 {
     public class Orders
     {
-        private List<Orders> _orders;
+        private List<LineItems> _itemslist = new List<LineItems>();
         private string _location;
         private double _totalprice;
         private int _ordernum;
@@ -21,12 +21,12 @@ namespace Models
                 _location = value;
             }
         }
-        public double TotalPrice 
-        { 
+        public double TotalPrice
+        {
             get
             {
                 return _totalprice;
-            } 
+            }
         }
         public int OrderNum
         {
@@ -37,6 +37,17 @@ namespace Models
             set
             {
                 _ordernum = value;
+            }
+        }
+        public List<LineItems> ItemsList
+        {
+            get
+            {
+                return _itemslist;
+            }
+            set
+            {
+                _itemslist = value;
             }
         }
 
