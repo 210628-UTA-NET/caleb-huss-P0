@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -10,9 +11,8 @@ namespace Models
         private string _state;
         private string _email;
         private string _phonenumber;
-        private List<Orders> _orders = new List<Orders>;
-        public Customers() { }
-
+        private List<Orders> _orders;
+    
         public string Name
         {
             get
