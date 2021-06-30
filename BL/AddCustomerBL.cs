@@ -1,6 +1,6 @@
 using System;
 using Models;
-namespace UI
+namespace BL
 {
     public class AddCustomer
     {
