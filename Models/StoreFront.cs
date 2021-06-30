@@ -10,7 +10,9 @@ namespace Models
         private string _city;
         private string _state;
 
-        //private List<string> _inventory = new List<string>();
+        private List<string> _inventory;
+        private List<Orders> _orders;
+        private int _storenum;
 
         public string Name
         {
@@ -56,6 +58,16 @@ namespace Models
                 _state = value;
             }
         }
+        public int StoreNum { 
+            get
+            {
+                return _storenum;
+            } 
+            set
+            {
+                _storenum = value;
+            } 
+            }
 
     }
 }
