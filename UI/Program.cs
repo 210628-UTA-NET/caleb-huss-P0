@@ -10,20 +10,16 @@ namespace UI
         {
             List<Customers> _customers = new List<Customers>();
 
-            // bool repeat = true;
-            // while(repeat)
+            
+            // generic code that created 3 customers then got their names
+            // for (int x = 0; x < 3; x++)
             // {
-            //     _customers.Add(AddCustomer.AddCustomer());
+            //     _customers.Add(AddCustomer.AddCust());
             // }
-
-            for (int x = 0; x < 3; x++)
-            {
-                _customers.Add(AddCustomer.AddCust());
-            }
-            foreach (Customers item in _customers)
-            {
-                Console.WriteLine(item.Name);
-            }
+            // foreach (Customers item in _customers)
+            // {
+            //     Console.WriteLine(item.Name);
+            // }
         }
     }
 }
