@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CustomerFunctions;
+using Models;
 namespace UI
 {
     class Program

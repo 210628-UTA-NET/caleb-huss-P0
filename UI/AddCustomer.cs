@@ -1,5 +1,5 @@
 using System;
-using CustomerFunctions;
+using Models;
 namespace UI
 {
     public class AddCustomer
