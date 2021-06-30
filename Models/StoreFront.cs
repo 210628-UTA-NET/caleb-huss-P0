@@ -10,8 +10,8 @@ namespace Models
         private string _city;
         private string _state;
 
-        private List<string> _inventory;
-        private List<Orders> _orders;
+        private List<LineItems> _inventory = new List<LineItems>();
+        private List<Orders> _orderslist = new List<Orders>();
         private int _storenum;
 
         public string Name
@@ -58,16 +58,46 @@ namespace Models
                 _state = value;
             }
         }
-        public int StoreNum { 
+        public int StoreNum
+        {
             get
             {
                 return _storenum;
-            } 
+            }
             set
             {
                 _storenum = value;
-            } 
             }
-
+        }
+        public List<LineItems> Inventory
+        {
+            get
+            {
+                return _inventory;
+            }
+            set
+            {
+                _inventory = value;
+            }
+        }
+        public List<Orders> OrdersList
+        {
+            get
+            {
+                return _orderslist;
+            }
+            set
+            {
+                _orderslist = value;
+            }
+        }
+        public void AddOrder(Orders p_order)
+        {
+            _orderslist.Add(p_order);
+        }
+        public void AddInventory(LineItems p_item)
+        {
+            _inventory.Add(p_item);
+        }
     }
 }
