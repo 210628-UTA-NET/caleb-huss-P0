@@ -11,8 +11,8 @@ namespace Models
         private string _state;
         private string _email;
         private string _phonenumber;
-        private List<Orders> _orders;
-    
+        private List<Orders> _orderlist = new List<Orders>();
+
         public string Name
         {
             get
@@ -47,15 +47,15 @@ namespace Models
             }
         }
         public string State
-        { 
+        {
             get
             {
                 return _state;
-            } 
-            set 
+            }
+            set
             {
                 _state = value;
-            } 
+            }
         }
         public string Email
         {
@@ -81,7 +81,20 @@ namespace Models
             }
         }
 
-
+        public List<Orders> OrderList
+        {
+            get
+            {
+                return _orderlist;
+            }
+            set
+            {
+                _orderlist = value;
+            }
+        }
+        public void AddOrder(Orders p_order) {
+            _orderlist.Add(p_order);
+        }
     }
 
 
