@@ -12,17 +12,12 @@ namespace UI
             Console.WriteLine("0) Go back");
         }
 
-        public string YourChoice()
+        public MenuType YourChoice()
         {
             string userInput = Console.ReadLine();
             switch (userInput)
-            {
-                case "0":
-                    return "Exit";
-                case "1":
-                    return "AddCustomer";
-                default:
-                    return "Unknown";
+            {   default:
+                    return MenuType.AddCustomerMenu;
             }
         }
     }

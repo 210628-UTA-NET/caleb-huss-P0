@@ -4,9 +4,6 @@ namespace UI
 {
     public class MainMenu : IMenu
     {
-        public MainMenu()
-        {
-        }
         public void Menu()
         {
             Console.WriteLine("====Main Menu====");
@@ -15,18 +12,14 @@ namespace UI
             Console.WriteLine("0) Exit");
         }
 
-        public string YourChoice()
+        public MenuType YourChoice()
         {
             string userInput = Console.ReadLine();
 
             switch (userInput)
             {
-                case "0":
-                    return "Exit";
-                case "1":
-                    return "CustomerMenu";
                 default:
-                    return "Unknown";
+                    return MenuType.MainMenu;
             }
 
 
