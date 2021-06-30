@@ -12,6 +12,7 @@ namespace UI
             Console.WriteLine("2) By email?");
             Console.WriteLine("3) By Name?");
             Console.WriteLine("4) By address?");
+            Console.WriteLine("0) Go back");
         }
 
         public MenuType YourChoice()
