@@ -1,0 +1,17 @@
+UI
+    add customer info
+        prompt them to add things like name and address
+    Search for customer
+        takes some search parameter and gets customer informatio
+    View store inventory
+        Searches and gets stor front information based on some search parameter
+    Place order
+        takes in the customer who wants to place an order, which locatino the order is placed and the list of items the customer wants to order
+        Should present products and quatities available at the store and dicatie whihc product an dhow much will be added to the order
+        Should bne able to check out multiple products and view the order details you just placed
+     Order history
+        Should be able to search for a customer or store and get their order history based on a search parameter
+     ReplenishInventory
+        Search for a certain storefront and get its inventory  from a search result
+        Then ask how much should be added to the existing inventory
+    
