@@ -14,6 +14,14 @@ namespace BL
         /// </summary>
         /// <returns>Returns a list of all the stores</returns>
         List<StoreFront> GetAllStores();
+
+        /// <summary>
+        /// Used to get a specific Storefront
+        /// </summary>
+        /// <param name="p_store">The object will be compared to stores in db</param>
+        /// <returns>Returns store being looked for</returns>
+        StoreFront GetStoreFront(StoreFront p_store);
+
         /// <summary>
         /// Adds a customer to the db via the DL
         /// </summary>
