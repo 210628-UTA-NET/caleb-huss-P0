@@ -5,6 +5,8 @@ namespace UI
 {
     public class AddCustomerMenu : IMenu
     {
+        //Create a customer class to add info too
+        //It will be used to add a customer to the db
         private static Customers _newCust = new Customers();
         private ICustomerBL _custBL;
         public AddCustomerMenu(ICustomerBL p_custBL)
@@ -14,13 +16,13 @@ namespace UI
         public void Menu()
         {
             Console.WriteLine("==== Add Customer Menu ====");
-            Console.WriteLine("What would you like to dadd to the custome profile?");
-            Console.WriteLine("1) Name - ");
-            Console.WriteLine("2) Address - ");
-            Console.WriteLine("3) City - ");
-            Console.WriteLine("4) State - ");
-            Console.WriteLine("5) Email - ");
-            Console.WriteLine("6) PhoneNumber - ");
+            Console.WriteLine("What would you like to add to the custome profile?");
+            Console.WriteLine("1) Name - " + _newCust.Name);
+            Console.WriteLine("2) Address - " + _newCust.Address);
+            Console.WriteLine("3) City - " + _newCust.City);
+            Console.WriteLine("4) State - " + _newCust.State);
+            Console.WriteLine("5) Email - " + _newCust.Email);
+            Console.WriteLine("6) PhoneNumber - " + _newCust.PhoneNumber);
             Console.WriteLine("7) Create Customer Profile");
             Console.WriteLine("0) Go back");
         }
@@ -28,6 +30,7 @@ namespace UI
         public MenuType YourChoice()
         {
             string userInput = Console.ReadLine();
+            //inputs 1-6 add info to the _newCust obj
             switch (userInput)
             {   case "0":
                     return MenuType.CustomerMenu;
@@ -47,10 +50,10 @@ namespace UI
                     _newCust.Email = Console.ReadLine();
                     return MenuType.AddCustomerMenu;
                 case "6":
-                    _newCust.PhoneNumber = Console.ReadLine();
+                    _newCust.PhoneNumber = int.Parse(Console.ReadLine());
                     return MenuType.AddCustomerMenu;
                 case "7":
-                    _custBL.AddCustomer(_newCust);
+                    _custBL.AddCustomer(_newCust); //THis commits the cust to the db
                     return MenuType.CustomerMenu;
                 default:
                     return MenuType.AddCustomerMenu;
