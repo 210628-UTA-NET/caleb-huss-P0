@@ -10,7 +10,7 @@ namespace Models
         private string _city;
         private string _state;
         private string _email;
-        private string _phonenumber;
+        private int _phonenumber;
         private List<Orders> _orderlist = new List<Orders>();
 
         public string Name
@@ -69,7 +69,7 @@ namespace Models
             }
 
         }
-        public string PhoneNumber
+        public int PhoneNumber
         {
             get
             {
@@ -81,6 +81,7 @@ namespace Models
             }
         }
 
+        public int CustomerNumber { get; set; }
         public List<Orders> OrderList
         {
             get
@@ -95,7 +96,9 @@ namespace Models
         public void AddOrder(Orders p_order) {
             _orderlist.Add(p_order);
         }
+        public override string ToString()
+        {
+            return $"Name: {Name}, Phonenumber: {PhoneNumber}";
+        }
     }
-
-
 }

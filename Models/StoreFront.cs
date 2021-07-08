@@ -58,7 +58,7 @@ namespace Models
                 _state = value;
             }
         }
-        public int StoreNum
+        public int StoreNumber
         {
             get
             {

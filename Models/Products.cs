@@ -54,5 +54,6 @@ namespace Models
                 _category = value;
             }
         }
+        public int ProductID { get; set; }
     }
 }
