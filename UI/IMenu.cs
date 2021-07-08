@@ -3,13 +3,24 @@ namespace UI
     public enum MenuType
     {
         MainMenu,
-        AddCustomerMenu,
+        StoreMenu,
+        StoreSearchMenu,
+        StoreFoundMenu,
+        ViewInventoryMenu,
+        ReplenishInventoryMenu,
+        AddStoreMenu,
         CustomerMenu,
         CustomerSearchMenu,
-        OrderHistoryMenu,
+        CustomerFoundMenu,
+        AddCustomerMenu,
+        OrderMenu,
         PlaceOrderMenu,
-        ReplenishInventoryMenu,
-        ViewInventoryMenu,
+        OrderHistoryMenu,
+        StoreOrderHistoryMenu,
+        CustomerOrderHistory,
+        
+        
+
         Exit
     }
     public interface IMenu
