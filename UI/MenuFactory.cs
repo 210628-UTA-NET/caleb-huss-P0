@@ -19,13 +19,18 @@ namespace UI
 
             // Get the connectionString from appsetting
             string connectionString = configuration.GetConnectionString("Reference2DB");
-            DbContextOptions<DemoDBContext> option = new DbContextOptionsBuilder<DemoDBContext>()
+            DbContextOptions<DemoDBContext> options = new DbContextOptionsBuilder<DemoDBContext>()
                 .UseSqlServer(connectionString)
                 .Options;
 
             switch (p_menu)
             {
-
+                case MenuType.MainMenu:
+                    return new MainMenu();
+                case MenuType.CustomerMenu:
+                    return new CustomerMenu();
+                case MenuType.AddCustomerMenu:
+                    return new AddCustomerMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
                 default:
                     return null;
             }
