@@ -93,12 +93,13 @@ namespace Models
                 _orderlist = value;
             }
         }
-        public void AddOrder(Orders p_order) {
+        public void AddOrder(Orders p_order)
+        {
             _orderlist.Add(p_order);
         }
         public override string ToString()
         {
-            return $"Name: {Name}, Phonenumber: {PhoneNumber}";
+            return $"Name: {Name}, Phonenumber: {PhoneNumber}, Email: {Email}, CustomerID: {CustomerNumber}, \nAddress: {Address}, City: {City}, State: {State}";
         }
     }
 }
