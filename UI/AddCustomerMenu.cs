@@ -50,7 +50,7 @@ namespace UI
                     _newCust.Email = Console.ReadLine();
                     return MenuType.AddCustomerMenu;
                 case "6":
-                    _newCust.PhoneNumber = int.Parse(Console.ReadLine());
+                    _newCust.PhoneNumber = long.Parse(Console.ReadLine());
                     return MenuType.AddCustomerMenu;
                 case "7":
                     _custBL.AddCustomer(_newCust); //THis commits the cust to the db

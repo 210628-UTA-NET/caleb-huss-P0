@@ -10,7 +10,7 @@ namespace Models
         private string _city;
         private string _state;
         private string _email;
-        private int _phonenumber;
+        private long _phonenumber;
         private List<Orders> _orderlist = new List<Orders>();
 
         public string Name
@@ -69,7 +69,7 @@ namespace Models
             }
 
         }
-        public int PhoneNumber
+        public long PhoneNumber
         {
             get
             {
