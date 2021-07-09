@@ -11,6 +11,7 @@ namespace UI
             Console.WriteLine("1) Store Corner");
             Console.WriteLine("2) Customer Corner");
             Console.WriteLine("3) OrderCorner");
+            Console.WriteLine("4) Employee Corner");
             Console.WriteLine("0) Exit");
         }
 
@@ -28,6 +29,8 @@ namespace UI
                     return MenuType.CustomerMenu;
                 case "3":
                     return MenuType.OrderMenu; 
+                case "4":
+                    return MenuType.EmployeeLoginMenu;
                 default:
                     return MenuType.MainMenu;
             }
