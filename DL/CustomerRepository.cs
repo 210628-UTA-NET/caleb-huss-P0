@@ -41,7 +41,7 @@ namespace DL
                         State = rest.State,
                         Address = rest.Address,
                         Email = rest.Email,
-                        PhoneNumber = (int)rest.PhoneNumber
+                        PhoneNumber = (long)rest.PhoneNumber
                     }
             ).ToList();
         }
