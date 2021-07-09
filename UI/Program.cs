@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BL;
 using Models;
 namespace UI
 {
@@ -19,13 +20,32 @@ namespace UI
                 restMenu.Menu();
                 currentMenu = restMenu.YourChoice();
 
-                switch (currentMenu)
-                {
+                // switch (currentMenu)
+                // {
+                //     case MenuType.MainMenu:
+                //         restMenu = menuFactory.GetMenu(MenuType.MainMenu);
+                //         break;
+                //     case MenuType.CustomerMenu:
+                //         restMenu = menuFactory.GetMenu(MenuType.CustomerMenu);
+                //         break;
+                //     default:
+                //         Console.WriteLine("Cannot process. Press enter and try again.");
+                //         Console.ReadLine();
+                //         break;
+                // }
 
-                    default:
-                        Console.WriteLine("Cannot process. Please try again.");
-                        break;
+                if (Enum.IsDefined(typeof(MenuType), currentMenu))
+                {
+                    restMenu = menuFactory.GetMenu(currentMenu);
+                }else
+                {
+                    Console.WriteLine("Could not process input. Hit enter and try again");
+                    Console.ReadLine();
+                    break;
                 }
+
+                // Console.WriteLine("{0}: {1}", currentMenu, Enum.IsDefined(typeof(MenuType), currentMenu));
+                // Console.ReadLine();
             }
 
 
