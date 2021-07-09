@@ -11,16 +11,41 @@ namespace UI
         {
             Console.WriteLine("=== Employee Login ===");
             Console.WriteLine("Please enter your credentials: ");
-            Console.WriteLine("1) Enter EmployeeID - ");
-            Console.WriteLine("2) Enter password - ");
+            Console.WriteLine("1) Enter EmployeeID - " + _userlog.EmployeeID);
+            Console.WriteLine("2) Enter password - " + _userlog.Password);
             Console.WriteLine("3) Login");
             Console.WriteLine("0) Go back");
-            
+
         }
 
         public MenuType YourChoice()
         {
-            throw new NotImplementedException();
+            string userInput = Console.ReadLine();
+
+            switch (userInput)
+            {
+                case "0":
+                    return MenuType.MainMenu;
+                case "1":
+                    _userlog.EmployeeID = int.Parse(Console.ReadLine());
+                    return MenuType.EmployeeLoginMenu;
+                case "2":
+                    _userlog.Password = Console.ReadLine();
+                    return MenuType.EmployeeLoginMenu;
+                case "3":
+                    if (_userlog.CheckCreditials())
+                    {
+                        return MenuType.EmployeeMenu;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid login info. Press enter to go back.");
+                        Console.ReadLine();
+                        return MenuType.EmployeeLoginMenu;
+                    }
+                default:
+                    return MenuType.EmployeeLoginMenu;
+            }
         }
     }
 }
