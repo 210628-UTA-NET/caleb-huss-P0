@@ -19,7 +19,7 @@ namespace UI
             switch (userInput)
             {
                 case "0":
-                    return MenuType.Exit;
+                    return MenuType.MainMenu;
                 case "1":
                     return MenuType.CustomerSearchMenu;
                 case "2":
