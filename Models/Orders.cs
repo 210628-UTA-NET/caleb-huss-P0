@@ -50,6 +50,7 @@ namespace Models
                 _itemslist = value;
             }
         }
-
+        public StoreFront StoreFront { get; set; }
+        public Customers Customer { get; set; }
     }
 }
