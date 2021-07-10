@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 #nullable disable
 
@@ -33,7 +34,7 @@ namespace DL.Entities
                 entity.ToTable("Customer");
 
                 entity.Property(e => e.CustomerId)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("customerId");
 
                 entity.Property(e => e.Address)
@@ -87,7 +88,7 @@ namespace DL.Entities
                 entity.ToTable("LineItem");
 
                 entity.Property(e => e.LineItemId)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("lineItemID");
 
                 entity.Property(e => e.ProductId).HasColumnName("productID");
@@ -130,7 +131,7 @@ namespace DL.Entities
                 entity.ToTable("Product");
 
                 entity.Property(e => e.ProductId)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("productId");
 
                 entity.Property(e => e.Category)
@@ -162,7 +163,7 @@ namespace DL.Entities
                 entity.ToTable("Store");
 
                 entity.Property(e => e.StoreNumber)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("storeNumber");
 
                 entity.Property(e => e.Address)
