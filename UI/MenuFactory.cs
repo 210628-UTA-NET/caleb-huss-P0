@@ -39,6 +39,8 @@ namespace UI
                     return new ViewAllCustomersMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
                 case MenuType.CustomerSearchMenu:
                     return new CustomerSearchMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
+                case MenuType.ViewAllStoresMenu:
+                    return new ViewAllStoresMenu(new StoreBL(new StoreRepository(new DemoDBContext(options))));
                 default:
                     return null;
             }

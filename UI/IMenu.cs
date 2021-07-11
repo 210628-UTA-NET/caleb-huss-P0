@@ -6,6 +6,7 @@ namespace UI
         StoreMenu,
         StoreSearchMenu,
         StoreFoundMenu,
+        ViewAllStoresMenu,
         ViewInventoryMenu,
         ReplenishInventoryMenu,
         AddStoreMenu,
