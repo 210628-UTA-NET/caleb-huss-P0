@@ -32,16 +32,16 @@ namespace DL
         public List<Customers> GetAllCustomers()
         {
             return _context.Customers.Select(
-                rest =>
+                cust =>
                     new Customers()
                     {
-                        CustomerId = rest.CustomerId,
-                        Name = rest.Name,
-                        City = rest.City,
-                        State = rest.State,
-                        Address = rest.Address,
-                        Email = rest.Email,
-                        PhoneNumber = (long)rest.PhoneNumber
+                        CustomerId = cust.CustomerId,
+                        Name = cust.Name,
+                        City = cust.City,
+                        State = cust.State,
+                        Address = cust.Address,
+                        Email = cust.Email,
+                        PhoneNumber = (long)cust.PhoneNumber
                     }
             ).ToList();
         }
