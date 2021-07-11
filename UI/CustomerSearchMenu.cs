@@ -1,6 +1,8 @@
 using System;
 using Models;
 using BL;
+using System.Collections.Generic;
+
 namespace UI
 {
     public class CustomerSearchMenu : IMenu
@@ -20,7 +22,7 @@ namespace UI
             Console.WriteLine("1) Phone Number - ");
             Console.WriteLine("2) Email - ");
             Console.WriteLine("3) Name - ");
-            Console.WriteLine("4) Customer Number - ");
+            Console.WriteLine("4) CustomerID - ");
             Console.WriteLine("5) Search");
             Console.WriteLine("0) Go back");
         }
@@ -42,7 +44,7 @@ namespace UI
                     _findCust.Name = Console.ReadLine();
                     return MenuType.CustomerSearchMenu;
                 case "4":
-                    _findCust.CustomerNumber = int.Parse(Console.ReadLine());
+                    _findCust.CustomerId = int.Parse(Console.ReadLine());
                     return MenuType.CustomerSearchMenu;
                 case "5":
                     CustomerFound = _custBL.GetCustomer(_findCust);
@@ -57,6 +59,6 @@ namespace UI
         /// in this property
         /// </summary>
         /// <value>The values will be the searched for customer</value>
-        public Customers CustomerFound { get; set; }
+        public List<Customers> CustomerFound { get; set; }
     }
 }

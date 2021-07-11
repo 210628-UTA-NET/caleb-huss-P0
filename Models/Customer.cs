@@ -11,6 +11,7 @@ namespace Models
         private string _state;
         private string _email;
         private long _phonenumber;
+        private int _customerid;
         private List<Orders> _orderlist = new List<Orders>();
 
         public string Name
@@ -81,7 +82,7 @@ namespace Models
             }
         }
 
-        public int CustomerNumber { get; set; }
+        public int CustomerId { get { return _customerid; } set { _customerid = value; } }
         public List<Orders> OrderList
         {
             get
@@ -99,7 +100,7 @@ namespace Models
         }
         public override string ToString()
         {
-            return $"Name: {Name}, Phonenumber: {PhoneNumber}, Email: {Email}, CustomerID: {CustomerNumber}, \nAddress: {Address}, City: {City}, State: {State}";
+            return $"Name: {Name}, Phonenumber: {PhoneNumber}, Email: {Email}, CustomerID: {CustomerId}, \nAddress: {Address}, City: {City}, State: {State}";
         }
     }
 }
