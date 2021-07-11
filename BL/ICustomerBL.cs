@@ -20,7 +20,7 @@ namespace BL
         /// </summary>
         /// <param name="p_cust">This object will be used to find an existing cust in db</param>
         /// <returns>Returns the customer being searched for</returns>
-        Customers GetCustomer(Customers p_cust);
+        List<Customers> GetCustomer(Customers p_cust);
         
         /// <summary>
         /// Adds a customer to the database
