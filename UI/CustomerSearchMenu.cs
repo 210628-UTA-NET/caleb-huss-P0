@@ -62,8 +62,8 @@ namespace UI
                     Console.ReadLine(); // Pause after getting customer from db
                     return MenuType.CustomerSearchMenu;
                 case "6":
-                    _findCust.Name = "";
-                    _findCust.Email = "";
+                    _findCust.Name = null;
+                    _findCust.Email = null;
                     _findCust.PhoneNumber = 0;
                     _findCust.CustomerId = 0;
                     return MenuType.CustomerSearchMenu;
