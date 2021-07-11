@@ -7,6 +7,7 @@ namespace DL
 {
     public class CustomerRepository : ICustomerRepository
     {
+        
         private Entities.DemoDBContext _context;
         public CustomerRepository(Entities.DemoDBContext p_context)
         {
@@ -14,18 +15,17 @@ namespace DL
         }
         public Customers AddCustomer(Customers p_cust)
         {
-            // Need to query and get largest customer number then add 1
-            int custNumber = 10;
             _context.Customers.Add(new Entities.Customer
             {
-                CustomerId = (int)custNumber + 1,
                 Name = p_cust.Name,
                 Address = p_cust.Address,
                 City = p_cust.City,
                 State = p_cust.State,
                 Email = p_cust.Email,
-                PhoneNumber = p_cust.PhoneNumber
+                PhoneNumber = p_cust.PhoneNumber,
+                CustomerId = p_cust.CustomerId
             });
+            _context.SaveChanges();
             return p_cust;
         }
 
@@ -35,7 +35,7 @@ namespace DL
                 rest =>
                     new Customers()
                     {
-                        CustomerNumber = rest.CustomerId,
+                        CustomerId = rest.CustomerId,
                         Name = rest.Name,
                         City = rest.City,
                         State = rest.State,
@@ -46,9 +46,55 @@ namespace DL
             ).ToList();
         }
 
-        public Customers GetCustomers(Customers p_cust)
+        public List<Customers> GetCustomer(Customers p_cust)
         {
-            throw new NotImplementedException();
+            //If provided the customer ID just return the customer associated with that ID.
+            if (p_cust.CustomerId > 0)
+            {
+                Customers _foundcust = new Customers();
+                List<Customers> foundcusts = new List<Customers>()
+                {
+                    _foundcust
+                };
+                var query1 = _context.Customers.Find(p_cust.CustomerId);
+                _foundcust.CustomerId = query1.CustomerId;
+                _foundcust.Name = query1.Name;
+                _foundcust.City = query1.City;
+                _foundcust.State = query1.State ;
+                _foundcust.Address = query1.Address ;
+                _foundcust.PhoneNumber = query1.PhoneNumber ;
+                _foundcust.Email = query1.Email ;
+                return foundcusts;
+
+            }
+
+            var query = _context.Customers.AsQueryable();
+
+            if (!String.IsNullOrWhiteSpace(p_cust.Name))
+            {
+                query = query.Where(a => a.Name == p_cust.Name);
+            }
+            if (!String.IsNullOrWhiteSpace(p_cust.Email))
+            {
+                query = query.Where(a => a.Email == p_cust.Email);
+            }
+            if (p_cust.PhoneNumber != 0)
+            {
+                query = query.Where(a => a.PhoneNumber == p_cust.PhoneNumber);
+            }
+            return query.Select(
+                rest =>
+                    new Customers()
+                    {
+                        CustomerId = rest.CustomerId,
+                        Name = rest.Name,
+                        City = rest.City,
+                        State = rest.State,
+                        Address = rest.Address,
+                        Email = rest.Email,
+                        PhoneNumber = (long)rest.PhoneNumber
+                    }
+            ).ToList();
         }
     }
 }
