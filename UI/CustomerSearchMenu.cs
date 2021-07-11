@@ -10,6 +10,7 @@ namespace UI
         //Create a customer to be used as a reference
         //to find a customer in the db
         private static Customers _findCust = new Customers();
+        private static List<Customers> _foundCusts;
         private ICustomerBL _custBL;
         public CustomerSearchMenu(ICustomerBL p_custBL)
         {
@@ -19,11 +20,12 @@ namespace UI
         {
             Console.WriteLine("==== Customer Search Menu ====");
             Console.WriteLine("How would you like to search for a customer?");
-            Console.WriteLine("1) Phone Number - ");
-            Console.WriteLine("2) Email - ");
-            Console.WriteLine("3) Name - ");
-            Console.WriteLine("4) CustomerID - ");
+            Console.WriteLine("1) Phone Number - " + _findCust.PhoneNumber);
+            Console.WriteLine("2) Email - " + _findCust.Email);
+            Console.WriteLine("3) Name - " + _findCust.Name);
+            Console.WriteLine("4) CustomerID - " + _findCust.CustomerId);
             Console.WriteLine("5) Search");
+            Console.WriteLine("6) Clear search");
             Console.WriteLine("0) Go back");
         }
 
@@ -47,8 +49,19 @@ namespace UI
                     _findCust.CustomerId = int.Parse(Console.ReadLine());
                     return MenuType.CustomerSearchMenu;
                 case "5":
-                    CustomerFound = _custBL.GetCustomer(_findCust);
+                    _foundCusts = _custBL.GetCustomer(_findCust);
+                    foreach (Customers custs in _foundCusts)
+                    {
+                        Console.WriteLine(custs);
+                    }
+                    Console.WriteLine("Press enter to go back");
                     Console.ReadLine(); // Pause after getting customer from db
+                    return MenuType.CustomerSearchMenu;
+                case "6":
+                    _findCust.Name = "";
+                    _findCust.Email = "";
+                    _findCust.Name = "";
+                    _findCust.CustomerId = 0;
                     return MenuType.CustomerSearchMenu;
                 default:
                     return MenuType.CustomerSearchMenu;
