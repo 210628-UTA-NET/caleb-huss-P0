@@ -35,7 +35,7 @@ namespace UI
             switch (userInput)
             {
                 case "0":
-                    return MenuType.Exit;
+                    return MenuType.CustomerMenu;
                 case "1":
                     _findCust.PhoneNumber = int.Parse(Console.ReadLine());
                     return MenuType.CustomerSearchMenu;
