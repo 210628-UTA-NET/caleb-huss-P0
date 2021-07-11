@@ -24,6 +24,10 @@ namespace BL
 
         public List<Customers> GetCustomer(Customers p_cust)
         {
+            if ((p_cust.Name == null) && (p_cust.Email == null) && (p_cust.CustomerId == 0) && (p_cust.PhoneNumber == 0))
+            {
+                p_cust.PhoneNumber = 1;
+            }
             return _repo.GetCustomer(p_cust);
         }
     }
