@@ -8,33 +8,31 @@ namespace DL
 {
     public class StoreRepository : IStoreRepository
     {
-        private const string _filePath = "./../DL/Database/Customer.json";
-        private string _jsonString;
+        private Entities.DemoDBContext _context;
+        public StoreRepository(Entities.DemoDBContext p_context)
+        {
+            _context = p_context;
+        }
         public StoreFront AddStore(StoreFront p_store)
         {
-            List<StoreFront> listOfStores = this.GetAllStores();
-            listOfStores.Add(p_store);
-            _jsonString = JsonSerializer.Serialize(listOfStores, new JsonSerializerOptions{WriteIndented = true});
-            File.WriteAllText(_filePath,_jsonString);
+            _context.Stores.Add(new Entities.Store
+            {
+                StoreNumber = p_store.StoreNumber,
+                Address = p_store.Address,
+                City = p_store.City,
+                State = p_store.State,
+                Name = p_store.Name
+            });
+            _context.SaveChanges();
             return p_store;
         }
 
         public List<StoreFront> GetAllStores()
         {
-            try
-            {
-                _jsonString = File.ReadAllText(_filePath);
-            }
-            catch (System.Exception)
-            {
-                
-                throw new Exception("Something went wrong while try to open the Store DB");
-
-            }
-            return JsonSerializer.Deserialize<List<StoreFront>>(_jsonString);
+            throw new NotImplementedException();
         }
 
-        public StoreFront GetStore(StoreFront p_store)
+        public List<StoreFront> GetStore(StoreFront p_store)
         {
             throw new NotImplementedException();
         }
