@@ -24,7 +24,7 @@ namespace BL
 
         public List<Customers> GetCustomer(Customers p_cust)
         {
-            if ((p_cust.Name == null) && (p_cust.Email == null) && (p_cust.CustomerId == 0) && (p_cust.PhoneNumber == 0))
+            if (String.IsNullOrWhiteSpace(p_cust.Name) && String.IsNullOrWhiteSpace(p_cust.Email) && (p_cust.CustomerId == 0) && (p_cust.PhoneNumber == 0))
             {
                 return new List<Customers>(); 
             }
