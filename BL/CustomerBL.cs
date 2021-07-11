@@ -26,7 +26,7 @@ namespace BL
         {
             if ((p_cust.Name == null) && (p_cust.Email == null) && (p_cust.CustomerId == 0) && (p_cust.PhoneNumber == 0))
             {
-                p_cust.PhoneNumber = 1;
+                return new List<Customers>(); 
             }
             return _repo.GetCustomer(p_cust);
         }
