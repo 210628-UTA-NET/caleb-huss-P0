@@ -99,5 +99,9 @@ namespace Models
         {
             _inventory.Add(p_item);
         }
+        public override string ToString()
+        {
+            return $"Name: {Name}, Store Number: {StoreNumber}, \nAddress: {Address}, City: {City}, State: {State}";
+        }
     }
 }
