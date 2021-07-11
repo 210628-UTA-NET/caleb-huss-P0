@@ -7,15 +7,15 @@ namespace UI
 {
     public class ViewAllCustomersMenu : IMenu
     {
-        private ICustomerBL _restBL;
-        public ViewAllCustomersMenu(ICustomerBL p_rest)
+        private ICustomerBL _custBL;
+        public ViewAllCustomersMenu(ICustomerBL p_cust)
         {
-            _restBL = p_rest;
+            _custBL = p_cust;
         }
         public void Menu()
         {
             Console.WriteLine("List of Customers");
-            List<Customers> customers = _restBL.GetAllCustomers();
+            List<Customers> customers = _custBL.GetAllCustomers();
             Console.WriteLine("=====================");
 
             foreach (Customers cust in customers)
