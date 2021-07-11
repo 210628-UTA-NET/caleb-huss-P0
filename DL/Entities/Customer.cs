@@ -12,7 +12,7 @@ namespace DL.Entities
         public string City { get; set; }
         public string State { get; set; }
         public string Email { get; set; }
-        public long? PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
         public string Name { get; set; }
     }
 }
