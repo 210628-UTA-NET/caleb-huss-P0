@@ -14,12 +14,13 @@ namespace DL
         /// </summary>
         /// <returns>Returns a list of all customers</returns>
         List<Customers> GetAllCustomers();
+
         /// <summary>
         /// This will get a specific customer from the db
         /// </summary>
         /// <param name="p_cust"> This Customer object will be used to find the desired customer in the db</param>
         /// <returns>Returns the spceific customer</returns>
-        Customers GetCustomers(Customers p_cust);
+        List<Customers> GetCustomer(Customers p_cust);
         /// <summary>
         /// This adds a customer to the db.
         /// </summary>
