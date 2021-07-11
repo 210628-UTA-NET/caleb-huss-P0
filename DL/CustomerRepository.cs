@@ -85,16 +85,16 @@ namespace DL
                 query = query.Where(a => a.PhoneNumber == p_cust.PhoneNumber);
             }
             return query.Select(
-                rest =>
+                cust =>
                     new Customers()
                     {
-                        CustomerId = rest.CustomerId,
-                        Name = rest.Name,
-                        City = rest.City,
-                        State = rest.State,
-                        Address = rest.Address,
-                        Email = rest.Email,
-                        PhoneNumber = (long)rest.PhoneNumber
+                        CustomerId = cust.CustomerId,
+                        Name = cust.Name,
+                        City = cust.City,
+                        State = cust.State,
+                        Address = cust.Address,
+                        Email = cust.Email,
+                        PhoneNumber = (long)cust.PhoneNumber
                     }
             ).ToList();
         }
