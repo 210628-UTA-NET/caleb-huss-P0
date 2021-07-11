@@ -54,13 +54,17 @@ namespace UI
                     {
                         Console.WriteLine(custs);
                     }
+                    if (_foundCusts.Count == 0)
+                    {
+                        Console.WriteLine("No customers found. Please try different search terms");
+                    }
                     Console.WriteLine("Press enter to go back");
                     Console.ReadLine(); // Pause after getting customer from db
                     return MenuType.CustomerSearchMenu;
                 case "6":
                     _findCust.Name = "";
                     _findCust.Email = "";
-                    _findCust.Name = "";
+                    _findCust.PhoneNumber = 0;
                     _findCust.CustomerId = 0;
                     return MenuType.CustomerSearchMenu;
                 default:

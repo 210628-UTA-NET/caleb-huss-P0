@@ -52,18 +52,20 @@ namespace DL
             if (p_cust.CustomerId > 0)
             {
                 Customers _foundcust = new Customers();
-                List<Customers> foundcusts = new List<Customers>()
-                {
-                    _foundcust
-                };
+                List<Customers> foundcusts = new List<Customers>();
                 var query1 = _context.Customers.Find(p_cust.CustomerId);
-                _foundcust.CustomerId = query1.CustomerId;
+                if(query1 != null)
+                {
+                    _foundcust.CustomerId = query1.CustomerId;
                 _foundcust.Name = query1.Name;
                 _foundcust.City = query1.City;
                 _foundcust.State = query1.State ;
                 _foundcust.Address = query1.Address ;
                 _foundcust.PhoneNumber = query1.PhoneNumber ;
                 _foundcust.Email = query1.Email ;
+                foundcusts.Add(_foundcust);
+                }
+                
                 return foundcusts;
 
             }
