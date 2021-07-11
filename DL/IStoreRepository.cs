@@ -19,7 +19,7 @@ namespace DL
             /// </summary>
             /// <param name="p_store">This storefront obj is used to get a desired store from the db</param>
             /// <returns> Returns the desired store obj</returns>
-            StoreFront GetStore(StoreFront p_store);
+            List<StoreFront> GetStore(StoreFront p_store);
             /// <summary>
             /// This will add a store to the db 
             /// </summary>
