@@ -18,9 +18,9 @@ namespace UI
         OrderHistoryMenu,
         StoreOrderHistoryMenu,
         CustomerOrderHistory,
-        
-        
-
+        ViewAllCustomersMenu,
+        EmployeeMenu,
+        EmployeeLoginMenu,
         Exit
     }
     public interface IMenu

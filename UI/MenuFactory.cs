@@ -31,6 +31,14 @@ namespace UI
                     return new CustomerMenu();
                 case MenuType.AddCustomerMenu:
                     return new AddCustomerMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
+                case MenuType.EmployeeLoginMenu:
+                    return new EmployeeLoginMenu();
+                case MenuType.EmployeeMenu:
+                    return new EmployeeMenu();
+                case MenuType.ViewAllCustomersMenu:
+                    return new ViewAllCustomersMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
+                case MenuType.CustomerSearchMenu:
+                    return new CustomerSearchMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
                 default:
                     return null;
             }
