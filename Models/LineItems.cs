@@ -29,5 +29,10 @@ namespace Models
                 _quantity = value;
             }
         }
+        public override string ToString()
+        {
+            
+            return $"{Product}, \nQuantity: {Quantity}";
+        }
     }
 }

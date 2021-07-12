@@ -55,5 +55,9 @@ namespace Models
             }
         }
         public int ProductID { get; set; }
+        public override string ToString()
+        {
+            return $"Product Name: {Name}, Price: ${Price}\nDescription: {Description},\nCategory: {Category}";
+        }
     }
 }
