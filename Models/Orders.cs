@@ -6,21 +6,8 @@ namespace Models
     public class Orders
     {
         private List<LineItems> _itemslist = new List<LineItems>();
-        private string _location;
         private double _totalprice;
         private int _ordernum;
-
-        public string Location
-        {
-            get
-            {
-                return _location;
-            }
-            set
-            {
-                _location = value;
-            }
-        }
         public double TotalPrice
         {
             get
@@ -52,5 +39,6 @@ namespace Models
         }
         public StoreFront StoreFront { get; set; }
         public Customers Customer { get; set; }
+
     }
 }
