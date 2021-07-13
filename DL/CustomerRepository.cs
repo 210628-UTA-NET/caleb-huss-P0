@@ -46,13 +46,12 @@ namespace DL
             ).ToList();
         }
 
-        public List<Customers> GetCustomer(Customers p_cust)
+        public Customers GetCustomer(Customers p_cust)
         {
             //If provided the customer ID just return the customer associated with that ID.
             if (p_cust.CustomerId > 0)
             {
                 Customers _foundcust = new Customers();
-                List<Customers> foundcusts = new List<Customers>();
                 var query1 = _context.Customers.Find(p_cust.CustomerId);
                 if(query1 != null)
                 {
@@ -63,10 +62,9 @@ namespace DL
                 _foundcust.Address = query1.Address ;
                 _foundcust.PhoneNumber = query1.PhoneNumber ;
                 _foundcust.Email = query1.Email ;
-                foundcusts.Add(_foundcust);
                 }
                 
-                return foundcusts;
+                return _foundcust;
 
             }
 
@@ -96,7 +94,7 @@ namespace DL
                         Email = cust.Email,
                         PhoneNumber = (long)cust.PhoneNumber
                     }
-            ).ToList();
+            ).ToList()[0];
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DL
         /// </summary>
         /// <param name="p_cust"> This Customer object will be used to find the desired customer in the db</param>
         /// <returns>Returns the spceific customer</returns>
-        List<Customers> GetCustomer(Customers p_cust);
+        Customers GetCustomer(Customers p_cust);
         /// <summary>
         /// This adds a customer to the db.
         /// </summary>
