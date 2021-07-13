@@ -35,7 +35,7 @@ namespace UI
                 case "3":
                     if (_userlog.CheckCreditials())
                     {
-                        return MenuType.EmployeeMenu;
+                        return MenuType.EmployeeStoreSelectorMenu;
                     }
                     else
                     {

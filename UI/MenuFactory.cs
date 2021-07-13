@@ -27,20 +27,17 @@ namespace UI
             {
                 case MenuType.MainMenu:
                     return new MainMenu();
-                case MenuType.CustomerMenu:
-                    return new CustomerMenu();
-                case MenuType.AddCustomerMenu:
-                    return new AddCustomerMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
+                case MenuType.CustomerSelectCreateMenu:
+                    return new CustomerSelectCreateMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
+                case MenuType.CustomerStoreSelectorMenu:
+                    return new CustomerStoreSelectorMenu(new StoreBL(new StoreRepository(new DemoDBContext(options))));
+                case MenuType.CustomerCornerMenu:
+                    return new CustomerCornerMenu();
                 case MenuType.EmployeeLoginMenu:
                     return new EmployeeLoginMenu();
-                case MenuType.EmployeeMenu:
-                    return new EmployeeMenu();
-                case MenuType.ViewAllCustomersMenu:
-                    return new ViewAllCustomersMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
-                case MenuType.CustomerSearchMenu:
-                    return new CustomerSearchMenu(new CustomerBL(new CustomerRepository(new DemoDBContext(options))));
-                case MenuType.ViewAllStoresMenu:
-                    return new ViewAllStoresMenu(new StoreBL(new StoreRepository(new DemoDBContext(options))));
+                    //return new ViewAllInventoryMenu(new InventoryBL(new InventoryRepository(new DemoDBContext(options))));
+                
+                
                 default:
                     return null;
             }
