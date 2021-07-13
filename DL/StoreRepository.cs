@@ -41,7 +41,7 @@ namespace DL
             ).ToList();
         }
 
-        public List<StoreFront> GetStore(StoreFront p_store)
+        public StoreFront GetStore(StoreFront p_store)
         {
             var query = _context.Stores.AsQueryable();
             if (!String.IsNullOrWhiteSpace(p_store.Name))
@@ -51,7 +51,7 @@ namespace DL
             if (p_store.StoreNumber > 0)
             {
                 query = query.Where(a => a.StoreNumber == p_store.StoreNumber);
-            }
+            } 
             return query.Select(
                 store => 
                     new StoreFront()
@@ -62,7 +62,7 @@ namespace DL
                         City = store.City,
                         State = store.State,
                     }
-            ).ToList();
+            ).ToList()[0];
         }
     }
 }

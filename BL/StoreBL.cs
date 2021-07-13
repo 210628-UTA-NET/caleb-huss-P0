@@ -25,7 +25,7 @@ namespace BL
 
         public StoreFront GetStoreFront(StoreFront p_store)
         {
-            throw new NotImplementedException();
+            return _repo.GetStore(p_store);
         }
     }
 }
