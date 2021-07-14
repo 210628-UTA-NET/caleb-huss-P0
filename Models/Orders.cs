@@ -59,6 +59,9 @@ namespace Models
         public override string ToString()
         {
             string returner =($@"
+========================
+Beginning of Order
+========================
 ====== Store Info ======
 {StoreFront}
 ====== Customer Info ======
