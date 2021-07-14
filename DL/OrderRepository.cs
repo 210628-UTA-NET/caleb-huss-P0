@@ -72,6 +72,7 @@ namespace DL
                               join p in _context.Products on l.ProductId equals p.ProductId
                               join c in _context.Customers on o.CustomerId equals c.CustomerId
                               where o.StoreNumber == p_store.StoreNumber
+                              orderby o.OrderId ascending
                               select new
                               {
                                   OrderNum = o.OrderId,
@@ -121,9 +122,11 @@ namespace DL
                         Name = item.ProductName,
                         Price = (float)item.ProductPrice,
                         Description = item.ProductDesc,
-                        Category = item.ProductCat
+                        Category = item.ProductCat,
+                        ProductID = item.ProductID
                     }, (int)item.Quantity);
                 }
+                _getorders.Add(currentOrder);
                 return _getorders;
             
 
@@ -137,6 +140,7 @@ namespace DL
                               join p in _context.Products on l.ProductId equals p.ProductId
                               join s in _context.Stores on o.StoreNumber equals s.StoreNumber
                               where o.CustomerId == p_cust.CustomerId
+                              orderby o.OrderId ascending
                               select new
                               {
                                   OrderNum = o.OrderId,
@@ -182,9 +186,11 @@ namespace DL
                         Name = item.ProductName,
                         Price = (float)item.ProductPrice,
                         Description = item.ProductDesc,
-                        Category = item.ProductCat
+                        Category = item.ProductCat,
+                        ProductID = item.ProductID
                     }, (int)item.Quantity);
                 }
+                _getorders.Add(currentOrder);
                 return _getorders;
             
         }
@@ -198,6 +204,7 @@ namespace DL
                               join p in _context.Products on l.ProductId equals p.ProductId
                               where o.StoreNumber == p_store.StoreNumber &&
                                     o.CustomerId == p_cust.CustomerId
+                             orderby o.OrderId ascending
                               select new
                               {
                                   OrderNum = o.OrderId,
@@ -231,9 +238,11 @@ namespace DL
                         Name = item.ProductName,
                         Price = (float)item.ProductPrice,
                         Description = item.ProductDesc,
-                        Category = item.ProductCat
+                        Category = item.ProductCat,
+                        ProductID = item.ProductID
                     }, (int)item.Quantity);
                 }
+                _getorders.Add(currentOrder);
                 return _getorders;
             
         }

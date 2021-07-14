@@ -7,7 +7,7 @@ namespace DL
 {
     public class CustomerRepository : ICustomerRepository
     {
-        
+
         private Entities.DemoDBContext _context;
         public CustomerRepository(Entities.DemoDBContext p_context)
         {
@@ -49,25 +49,25 @@ namespace DL
         public Customers GetCustomer(Customers p_cust)
         {
             //If provided the customer ID just return the customer associated with that ID.
-            if (p_cust.CustomerId > 0)
+
+            if (p_cust.CustomerId != 0)
             {
                 Customers _foundcust = new Customers();
                 var query1 = _context.Customers.Find(p_cust.CustomerId);
-                if(query1 != null)
+                if (query1 != null)
                 {
                     _foundcust.CustomerId = query1.CustomerId;
-                _foundcust.Name = query1.Name;
-                _foundcust.City = query1.City;
-                _foundcust.State = query1.State ;
-                _foundcust.Address = query1.Address ;
-                _foundcust.PhoneNumber = (long)query1.PhoneNumber ;
-                _foundcust.Email = query1.Email ;
+                    _foundcust.Name = query1.Name;
+                    _foundcust.City = query1.City;
+                    _foundcust.State = query1.State;
+                    _foundcust.Address = query1.Address;
+                    _foundcust.PhoneNumber = (long)query1.PhoneNumber;
+                    _foundcust.Email = query1.Email;
                 }
-                
+
                 return _foundcust;
-
             }
-
+            
             var query = _context.Customers.AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(p_cust.Name))
@@ -94,7 +94,9 @@ namespace DL
                         Email = cust.Email,
                         PhoneNumber = (long)cust.PhoneNumber
                     }
-            ).ToList()[0];
+            ).FirstOrDefault();
+
+
         }
     }
 }

@@ -62,7 +62,7 @@ namespace DL
                         City = store.City,
                         State = store.State,
                     }
-            ).ToList()[0];
+            ).FirstOrDefault();
         }
     }
 }

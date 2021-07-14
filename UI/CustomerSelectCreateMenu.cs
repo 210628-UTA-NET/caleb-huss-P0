@@ -7,7 +7,7 @@ namespace UI
     {
         public static Customers _newCust = new Customers();
         private ICustomerBL _custBL;
-        private Customers searchedCust;
+        private Customers searchedCust = new Customers();
         public CustomerSelectCreateMenu(ICustomerBL p_custBL)
         {
             _custBL = p_custBL;
@@ -64,7 +64,9 @@ namespace UI
                     return MenuType.CustomerSelectCreateMenu;
                 case "7":
                     searchedCust = _custBL.GetCustomer(_newCust);
-                    if (searchedCust.CustomerId != 0)
+                    if(searchedCust == null){
+    
+                    }else if (searchedCust.CustomerId != 0)
                     {
                        _newCust = searchedCust; 
                        return MenuType.CustomerStoreSelectorMenu;
@@ -95,7 +97,7 @@ namespace UI
                     return MenuType.CustomerStoreSelectorMenu;
                 case "10":
                 _newCust = new Customers();
-                    return MenuType.CustomerStoreSelectorMenu;
+                    return MenuType.CustomerSelectCreateMenu;
                 default:
                     return MenuType.CustomerSelectCreateMenu;
             }
