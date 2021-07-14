@@ -40,7 +40,7 @@ namespace UI
                     Console.WriteLine("Please enter the store number");
                     _searchedstore.StoreNumber = int.Parse(Console.ReadLine());
                     _store = _storeBL.GetStoreFront(_searchedstore);
-                    if (_searchedstore.StoreNumber != 0)
+                    if (_store.StoreNumber != 0)
                     {
                         Console.WriteLine("Store found. Press enter to continue");
                         Console.ReadLine();
