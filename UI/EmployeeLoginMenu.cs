@@ -27,9 +27,11 @@ namespace UI
                 case "0":
                     return MenuType.MainMenu;
                 case "1":
+                Console.WriteLine("Please input EmployeeID");
                     _userlog.EmployeeID = int.Parse(Console.ReadLine());
                     return MenuType.EmployeeLoginMenu;
                 case "2":
+                Console.WriteLine("Please input your password");
                     _userlog.Password = Console.ReadLine();
                     return MenuType.EmployeeLoginMenu;
                 case "3":

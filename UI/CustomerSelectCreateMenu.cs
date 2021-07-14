@@ -27,7 +27,7 @@ namespace UI
             Console.WriteLine("7) Search with provided parameters");
             Console.WriteLine("8) Search with Customer ID");
             Console.WriteLine("9) Create Customer Profile");
-            Console.WriteLine("11) Admin override");
+            Console.WriteLine("10) Clear Search");
             Console.WriteLine("0) Go back to the main menu");
         }
 
@@ -93,7 +93,8 @@ namespace UI
                 case "9":
                     _custBL.AddCustomer(_newCust);
                     return MenuType.CustomerStoreSelectorMenu;
-                case "11":
+                case "10":
+                _newCust = new Customers();
                     return MenuType.CustomerStoreSelectorMenu;
                 default:
                     return MenuType.CustomerSelectCreateMenu;

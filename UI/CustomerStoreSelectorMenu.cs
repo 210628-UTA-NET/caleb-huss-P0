@@ -35,13 +35,15 @@ namespace UI
             switch (userInput)
             {
                 case "0":
-                    return MenuType.MainMenu;
+                    return MenuType.CustomerSelectCreateMenu;
                 case "1":
                     Console.WriteLine("Please enter the store number");
                     _searchedstore.StoreNumber = int.Parse(Console.ReadLine());
                     _store = _storeBL.GetStoreFront(_searchedstore);
-                    if (_searchedstore.Name != null)
+                    if (_searchedstore.StoreNumber != 0)
                     {
+                        Console.WriteLine("Store found. Press enter to continue");
+                        Console.ReadLine();
                         return MenuType.CustomerCornerMenu;
                     }
                     Console.WriteLine("Could not find store. Press enter and try again");
@@ -53,6 +55,8 @@ namespace UI
                     _store = _storeBL.GetStoreFront(_searchedstore);
                     if (_store.Name != null)
                     {
+                        Console.WriteLine("Store found. Press enter to continue");
+                        Console.ReadLine();
                         return MenuType.CustomerCornerMenu;
                     }
                     Console.WriteLine("Could not find store. Press enter and try again");

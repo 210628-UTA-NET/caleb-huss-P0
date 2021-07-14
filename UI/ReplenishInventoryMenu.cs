@@ -10,7 +10,7 @@ namespace UI
         private IInventoryBL _invBL;
         private static LineItems _lineitem = new LineItems();
         private StoreFront _searchedstore = EmployeeStoreSelectorMenu._store;
-        private static Products _Products;
+        private static Products _Products = new Products();
         private static int _quantity;
         public ReplenishInventoryMenu(IInventoryBL p_invBL)
         {
@@ -18,10 +18,10 @@ namespace UI
         }
         public void Menu()
         {
-            Console.WriteLine("==== Replenish store inventory ====");
+            Console.WriteLine($"==== Replenish {_searchedstore.Name}s inventory ====");
             Console.WriteLine("Choose what product to update and by how much");
-            Console.WriteLine("1) Product ID - ");
-            Console.WriteLine("2) How many to add/subtract - ");
+            Console.WriteLine("1) Product ID - " + _Products.ProductID);
+            Console.WriteLine("2) How many to add/subtract - " + _quantity);
             Console.WriteLine("3) Update Inventory");
             Console.WriteLine("0) Go back");
         }
@@ -56,6 +56,7 @@ namespace UI
                         _quantity = 0;
                         Console.WriteLine("Can't have negative product.");
                         Console.WriteLine("Press enter to continue");
+                        Console.ReadLine();
                         return MenuType.ReplenishInventoryMenu;
                     }
                     return MenuType.ReplenishInventoryMenu;

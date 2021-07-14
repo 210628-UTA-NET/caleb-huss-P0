@@ -19,12 +19,11 @@ namespace UI
         }
         public void Menu()
         {
-           Console.WriteLine("==== Store Order History ====");
+           Console.WriteLine($"==== {_searchedstore.Name}s Order History ====");
            Console.WriteLine("View all orders for this store or just from select customers");
            Console.WriteLine("1) Customer ID - " + _cust.CustomerId);
-           Console.WriteLine("2) Customer Name - " + _cust.Name);
-           Console.WriteLine("3) Search orders");
-           Console.WriteLine("4) Get all orders");
+           Console.WriteLine("2) Search orders");
+           Console.WriteLine("3) Get all orders");
            Console.WriteLine("0) Go back");
         }
 
@@ -39,12 +38,11 @@ namespace UI
                     Console.WriteLine("Please enter the customers id");
                     _cust.CustomerId = int.Parse(Console.ReadLine());
                     return MenuType.ViewStoreOrderHistoryMenu;
+
                 case "2":
-                    Console.WriteLine("Please enter the customers name");
-                    _cust.Name = Console.ReadLine();
-                    return MenuType.ViewStoreOrderHistoryMenu;
-                case "3":
                     _searchedCust = _custBL.GetCustomer(_cust);
+                    // Console.WriteLine(_searchedCust);
+                    // Console.WriteLine(_searchedstore);
                     if (_searchedCust.CustomerId == 0)
                     {
                         Console.WriteLine("Customer not found. Press enter and try again");
@@ -60,7 +58,7 @@ namespace UI
                     Console.WriteLine("Press enter to go back");
                     Console.ReadLine();
                     return MenuType.ViewStoreOrderHistoryMenu;
-                case "4":
+                case "3":
                     List<Orders> _storeOrders = _orderBL.GetAllOrders(_searchedstore);
                     foreach (Orders _order in _storeOrders)
                     {

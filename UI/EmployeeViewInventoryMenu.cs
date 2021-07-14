@@ -34,7 +34,7 @@ namespace UI
             switch (userInput)
             {
                 case "0":
-                    return MenuType.CustomerCornerMenu;
+                    return MenuType.EmployeeCornerMenu;
                 case "1":
                     Console.WriteLine("Enter Product name");
                     _product.Name = Console.ReadLine();
