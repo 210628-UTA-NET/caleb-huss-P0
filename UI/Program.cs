@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using BL;
-using Models;
+
 namespace UI
 {
     class Program
