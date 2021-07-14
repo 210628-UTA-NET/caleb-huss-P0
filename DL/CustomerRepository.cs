@@ -60,7 +60,7 @@ namespace DL
                 _foundcust.City = query1.City;
                 _foundcust.State = query1.State ;
                 _foundcust.Address = query1.Address ;
-                _foundcust.PhoneNumber = query1.PhoneNumber ;
+                _foundcust.PhoneNumber = (long)query1.PhoneNumber ;
                 _foundcust.Email = query1.Email ;
                 }
                 
