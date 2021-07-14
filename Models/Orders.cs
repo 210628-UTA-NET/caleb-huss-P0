@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace Models
 {
     public class Orders
@@ -11,7 +12,11 @@ namespace Models
         public double TotalPrice
         {
             get
-            {
+            {   _totalprice = 0;
+                foreach (LineItems lineitem in _itemslist)
+                {
+                    _totalprice += lineitem.Product.Price * lineitem.Quantity;
+                }
                 return _totalprice;
             }
         }
@@ -39,6 +44,18 @@ namespace Models
         }
         public StoreFront StoreFront { get; set; }
         public Customers Customer { get; set; }
+        public void AddLineItem(Products p_product, int p_quantity){
+            LineItems _newListItem = new LineItems()
+            {
+                Product = p_product,
+                Quantity = p_quantity
+            };
+            _itemslist.Add(_newListItem);
+        }
+        public void AddLineItem(LineItems p_lineItem)
+        {
+            _itemslist.Add(p_lineItem);
+        }
 
     }
 }
