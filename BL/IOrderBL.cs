@@ -8,7 +8,7 @@ namespace BL
         List<Orders> GetAllOrders(Customers p_cust);
         List<Orders> GetAllOrders(StoreFront p_store);
         List<Orders> GetAllOrders(StoreFront p_store, Customers p_cust);
-        string AddOrder(Orders p_order);
+        Orders AddOrder(Orders p_order);
         
 
     }

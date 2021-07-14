@@ -12,7 +12,7 @@ namespace DL
         {
             _context = p_context;
         }
-        public string AddOrder(Orders p_order)
+        public Orders AddOrder(Orders p_order)
         {
             throw new NotImplementedException();
         }

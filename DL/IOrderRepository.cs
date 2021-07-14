@@ -26,6 +26,6 @@ namespace DL
         /// </summary>
         /// <param name="p_order">The order to be added to the db</param>
         /// <returns>the order added to the db</returns>
-        string AddOrder(Orders p_order);
+        Orders AddOrder(Orders p_order);
     }
 }

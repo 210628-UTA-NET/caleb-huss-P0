@@ -11,7 +11,7 @@ namespace BL
         {
             _repo = p_repo;
         }
-        public string AddOrder(Orders p_order)
+        public Orders AddOrder(Orders p_order)
         {
             return _repo.AddOrder(p_order);
         }
