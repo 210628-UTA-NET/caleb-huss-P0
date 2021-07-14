@@ -33,7 +33,6 @@ namespace DL
                     item.LineItemID = lastLineItemId;
                     _context.LineItems.Add(new Entities.LineItem
                     {
-                        LineItemId = lastLineItemId,
                         ProductId = item.Product.ProductID,
                         Quantity = item.Quantity
 
