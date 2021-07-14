@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace DL
@@ -16,8 +17,7 @@ namespace DL
         }
         public Orders AddOrder(Orders p_order)
         {
-            using (Entities.DemoDBContext _context = new Entities.DemoDBContext())
-            {
+            
                 //Get the highest order number
                 var result = (from o in _context.Orders
                               orderby o.OrderId descending
@@ -30,6 +30,7 @@ namespace DL
                 foreach (LineItems item in p_order.ItemsList)
                 {
                     lastLineItemId += 1;
+                    item.LineItemID = lastLineItemId;
                     _context.LineItems.Add(new Entities.LineItem
                     {
                         LineItemId = lastLineItemId,
@@ -46,14 +47,27 @@ namespace DL
                     });
                 }
                 _context.SaveChanges();
+                
+                foreach (LineItems item in p_order.ItemsList)
+                {
+                    var result3 = (from i in _context.Inventories
+                              where i.ProductId == item.Product.ProductID &&
+                              i.StoreNumber == p_order.StoreFront.StoreNumber
+                              select i).SingleOrDefault();
+                result3.Quantity -= item.Quantity; // change the quantity here
+
+                _context.Entry(result).State = EntityState.Modified;
+                _context.SaveChanges();
+                }
+
+
                 return p_order;
-            }
+        
         }
 
         public List<Orders> GetOrders(StoreFront p_store)
         {
-            using (Entities.DemoDBContext _context = new Entities.DemoDBContext())
-            {
+            
                 var result = (from o in _context.Orders
                               join l in _context.LineItems on o.LineItemId equals l.LineItemId
                               join p in _context.Products on l.ProductId equals p.ProductId
@@ -76,6 +90,11 @@ namespace DL
                                   CustEmail = c.Email,
                                   CustPN = c.PhoneNumber
                               }).ToList();
+                if (result.Count == 0)
+                {
+                    Console.WriteLine("No orders found");
+                    return new List<Orders>();
+                }
                 int currentOrderNum = result[0].OrderNum;
 
                 foreach (var item in result)
@@ -94,7 +113,7 @@ namespace DL
                         City = item.CustCity,
                         State = item.CustState,
                         Email = item.CustEmail,
-                        PhoneNumber = item.CustPN
+                        PhoneNumber = (long)item.CustPN
                     };
                     currentOrder.OrderNum = item.OrderNum;
                     currentOrder.StoreFront = p_store;
@@ -107,14 +126,13 @@ namespace DL
                     }, (int)item.Quantity);
                 }
                 return _getorders;
-            }
+            
 
         }
 
         public List<Orders> GetOrders(Customers p_cust)
         {
-            using (Entities.DemoDBContext _context = new Entities.DemoDBContext())
-            {
+            
                 var result = (from o in _context.Orders
                               join l in _context.LineItems on o.LineItemId equals l.LineItemId
                               join p in _context.Products on l.ProductId equals p.ProductId
@@ -135,6 +153,11 @@ namespace DL
                                   StoreCity = s.City,
                                   StoreState = s.State
                               }).ToList();
+                if (result.Count == 0)
+                {
+                    Console.WriteLine("No orders found");
+                    return new List<Orders>();
+                }
                 int currentOrderNum = result[0].OrderNum;
 
                 foreach (var item in result)
@@ -164,14 +187,13 @@ namespace DL
                     }, (int)item.Quantity);
                 }
                 return _getorders;
-            }
+            
         }
 
         public List<Orders> GetOrders(StoreFront p_store, Customers p_cust)
         {
 
-            using (Entities.DemoDBContext _context = new Entities.DemoDBContext())
-            {
+            
                 var result = (from o in _context.Orders
                               join l in _context.LineItems on o.LineItemId equals l.LineItemId
                               join p in _context.Products on l.ProductId equals p.ProductId
@@ -187,6 +209,11 @@ namespace DL
                                   ProductCat = p.Category,
                                   Quantity = l.Quantity
                               }).ToList();
+                if (result.Count == 0)
+                {
+                    Console.WriteLine("No orders found");
+                    return new List<Orders>();
+                }
                 int currentOrderNum = result[0].OrderNum;
 
                 foreach (var item in result)
@@ -209,7 +236,7 @@ namespace DL
                     }, (int)item.Quantity);
                 }
                 return _getorders;
-            }
+            
         }
     }
 }
