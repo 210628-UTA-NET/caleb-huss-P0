@@ -6,13 +6,12 @@ using Models;
 namespace UI
 {
 
-    public class ViewInventoryMenu : IMenu
+    public class EmployeeViewInventoryMenu : IMenu
     {
         private IInventoryBL _invBL;
-        private static Products _product = new Products();
-        private Customers _searchedCust = CustomerSelectCreateMenu._newCust;
-        private StoreFront _searchedstore = CustomerStoreSelectorMenu._store;
-        public ViewInventoryMenu(IInventoryBL p_invBL)
+        private Products _product = new Products();
+        private StoreFront _searchedstore = EmployeeStoreSelectorMenu._store;
+        public EmployeeViewInventoryMenu(IInventoryBL p_invBL)
         {
             _invBL = p_invBL;
         }
@@ -37,27 +36,24 @@ namespace UI
                 case "0":
                     return MenuType.CustomerCornerMenu;
                 case "1":
-                    Console.WriteLine("Enter product name");
+                    Console.WriteLine("");
                     _product.Name = Console.ReadLine();
-                    return MenuType.ViewInventoryMenu;
+                    return MenuType.EmployeeViewInventoryMenu;
                 case "2":
-                    Console.WriteLine("Enter product ID");
-                    _product.ProductID = int.Parse(Console.ReadLine());
-                    return MenuType.ViewInventoryMenu;
+                    Console.WriteLine("");
+                    return MenuType.EmployeeViewInventoryMenu;
                 case "3":
-                    Console.WriteLine("Enter product price");
-                    _product.Price = float.Parse(Console.ReadLine());
-                    return MenuType.ViewInventoryMenu;
+                    Console.WriteLine("");
+                    return MenuType.EmployeeViewInventoryMenu;
                 case "4":
-                    Console.WriteLine("Enter product category");
-                    _product.Category = Console.ReadLine();
-                    return MenuType.ViewInventoryMenu;
+                    Console.WriteLine("");
+                    return MenuType.EmployeeViewInventoryMenu;
                 case "5":
                     List<LineItems> _specificinventory = _invBL.GetSearchedInventory(_searchedstore, _product);
                     Console.WriteLine("================");
                     if (_specificinventory.Count == 0)
                     {
-                        Console.WriteLine("This store has no inventory.");
+                        Console.WriteLine("Could not find any products");
                     }
                     foreach (LineItems lineitem in _specificinventory)
                     {
@@ -67,7 +63,7 @@ namespace UI
                     Console.WriteLine("Press enter to go back");
                     Console.ReadLine();
 
-                    return MenuType.ViewInventoryMenu;
+                    return MenuType.EmployeeViewInventoryMenu;
                 case "6":
                     List<LineItems> _allinventory = _invBL.GetAllInventory(_searchedstore);
                     Console.WriteLine("================");
@@ -82,9 +78,9 @@ namespace UI
                     }
                     Console.WriteLine("Press enter to go back");
                     Console.ReadLine();
-                    return MenuType.ViewInventoryMenu;
+                    return MenuType.EmployeeViewInventoryMenu;
                 default:
-                    return MenuType.ViewInventoryMenu;
+                    return MenuType.EmployeeViewInventoryMenu;
 
             }
         }
