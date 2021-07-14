@@ -34,6 +34,11 @@ namespace UI
 
                 case "1":
                     List<Orders> _orders = _orderBL.GetAllOrders(_searchedStore, _searchedCust);
+ 
+                    if (_orders.Count ==0)
+                    {
+                            Console.WriteLine("No orders found");
+                    }
                     foreach (Orders order in _orders)
                     {
                         Console.WriteLine(order);
@@ -44,6 +49,10 @@ namespace UI
 
                 case "2":
                     List<Orders> _allOrders = _orderBL.GetAllOrders(_searchedCust);
+                    if (_allOrders.Count ==0)
+                    {
+                            Console.WriteLine("No orders found");
+                    }
                     foreach (Orders order in _allOrders)
                     {
                         Console.WriteLine(order);

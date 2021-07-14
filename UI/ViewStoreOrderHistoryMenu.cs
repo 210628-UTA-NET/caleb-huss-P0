@@ -50,7 +50,10 @@ namespace UI
                         return MenuType.ViewStoreOrderHistoryMenu;
                     }
                     List<Orders> _searchedStoreOrders = _orderBL.GetAllOrders(_searchedstore, _searchedCust);
-                    
+                    if (_searchedStoreOrders.Count == 0)
+                    {
+                        Console.WriteLine("No orders found");
+                    }
                     foreach (Orders _orders in _searchedStoreOrders)
                     {
                         Console.WriteLine(_orders);
@@ -60,6 +63,10 @@ namespace UI
                     return MenuType.ViewStoreOrderHistoryMenu;
                 case "3":
                     List<Orders> _storeOrders = _orderBL.GetAllOrders(_searchedstore);
+                    if (_storeOrders.Count == 0)
+                    {
+                        Console.WriteLine("No orders found");
+                    }
                     foreach (Orders _order in _storeOrders)
                     {
                         Console.WriteLine(_order);
