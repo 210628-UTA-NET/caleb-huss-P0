@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 #nullable disable
 
@@ -25,6 +24,7 @@ namespace DL.Entities
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -33,9 +33,7 @@ namespace DL.Entities
             {
                 entity.ToTable("Customer");
 
-                entity.Property(e => e.CustomerId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("customerId");
+                entity.Property(e => e.CustomerId).HasColumnName("customerId");
 
                 entity.Property(e => e.Address)
                     .HasMaxLength(50)
@@ -52,6 +50,11 @@ namespace DL.Entities
                     .IsUnicode(false)
                     .HasColumnName("email");
 
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
+
                 entity.Property(e => e.PhoneNumber).HasColumnName("phoneNumber");
 
                 entity.Property(e => e.State)
@@ -62,9 +65,12 @@ namespace DL.Entities
 
             modelBuilder.Entity<Inventory>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.InventoryEntry)
+                    .HasName("Inventory_PK");
 
                 entity.ToTable("Inventory");
+
+                entity.Property(e => e.InventoryEntry).HasColumnName("inventoryEntry");
 
                 entity.Property(e => e.ProductId).HasColumnName("productID");
 
@@ -73,12 +79,12 @@ namespace DL.Entities
                 entity.Property(e => e.StoreNumber).HasColumnName("storeNumber");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany()
+                    .WithMany(p => p.Inventories)
                     .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("ProductIdInvKey");
 
                 entity.HasOne(d => d.StoreNumberNavigation)
-                    .WithMany()
+                    .WithMany(p => p.Inventories)
                     .HasForeignKey(d => d.StoreNumber)
                     .HasConstraintName("StoreNumberInvKey");
             });
@@ -87,9 +93,7 @@ namespace DL.Entities
             {
                 entity.ToTable("LineItem");
 
-                entity.Property(e => e.LineItemId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("lineItemID");
+                entity.Property(e => e.LineItemId).HasColumnName("lineItemID");
 
                 entity.Property(e => e.ProductId).HasColumnName("productID");
 
@@ -130,9 +134,7 @@ namespace DL.Entities
             {
                 entity.ToTable("Product");
 
-                entity.Property(e => e.ProductId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("productId");
+                entity.Property(e => e.ProductId).HasColumnName("productId");
 
                 entity.Property(e => e.Category)
                     .HasMaxLength(30)
@@ -158,13 +160,11 @@ namespace DL.Entities
             modelBuilder.Entity<Store>(entity =>
             {
                 entity.HasKey(e => e.StoreNumber)
-                    .HasName("PK__Store__8B39C00116405E19");
+                    .HasName("PK__Store__8B39C0018A8A2D3E");
 
                 entity.ToTable("Store");
 
-                entity.Property(e => e.StoreNumber)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("storeNumber");
+                entity.Property(e => e.StoreNumber).HasColumnName("storeNumber");
 
                 entity.Property(e => e.Address)
                     .HasMaxLength(50)
@@ -175,6 +175,11 @@ namespace DL.Entities
                     .HasMaxLength(48)
                     .IsUnicode(false)
                     .HasColumnName("city");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("name");
 
                 entity.Property(e => e.State)
                     .HasMaxLength(27)
