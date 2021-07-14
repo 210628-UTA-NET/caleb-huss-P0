@@ -7,6 +7,11 @@ namespace DL.Entities
 {
     public partial class Customer
     {
+        public Customer()
+        {
+            Orders = new HashSet<Order>();
+        }
+
         public int CustomerId { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
@@ -14,5 +19,7 @@ namespace DL.Entities
         public string Email { get; set; }
         public long? PhoneNumber { get; set; }
         public string Name { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

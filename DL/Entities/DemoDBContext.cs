@@ -24,6 +24,7 @@ namespace DL.Entities
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
 
+    
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -107,7 +108,10 @@ namespace DL.Entities
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.InvKey)
+                    .HasName("Orders_PK");
+
+                entity.Property(e => e.InvKey).HasColumnName("invKey");
 
                 entity.Property(e => e.CustomerId).HasColumnName("customerID");
 
@@ -118,13 +122,13 @@ namespace DL.Entities
                 entity.Property(e => e.StoreNumber).HasColumnName("storeNumber");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany()
+                    .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("CustomerIdKey");
 
                 entity.HasOne(d => d.StoreNumberNavigation)
-                    .WithMany()
+                    .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.StoreNumber)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("StoreNumberKey");

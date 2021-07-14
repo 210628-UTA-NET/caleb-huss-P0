@@ -10,6 +10,7 @@ namespace DL.Entities
         public Store()
         {
             Inventories = new HashSet<Inventory>();
+            Orders = new HashSet<Order>();
         }
 
         public int StoreNumber { get; set; }
@@ -19,5 +20,6 @@ namespace DL.Entities
         public string Name { get; set; }
 
         public virtual ICollection<Inventory> Inventories { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

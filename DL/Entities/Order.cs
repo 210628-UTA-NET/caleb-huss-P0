@@ -11,6 +11,7 @@ namespace DL.Entities
         public int StoreNumber { get; set; }
         public int CustomerId { get; set; }
         public int LineItemId { get; set; }
+        public int InvKey { get; set; }
 
         public virtual Customer Customer { get; set; }
         public virtual Store StoreNumberNavigation { get; set; }
