@@ -40,7 +40,7 @@ namespace UI
             Console.WriteLine("8) Place order");
             Console.WriteLine("9) Clear order");
             Console.WriteLine("0) Go back");
-            Console.WriteLine("Order Total: $" + _order.TotalPrice);
+            Console.WriteLine("Order Total: $" + _order.TotalPrice.ToString("0.00"));
         }
 
         public MenuType YourChoice()
@@ -157,7 +157,7 @@ namespace UI
                     }
                     _order.AddLineItem(new LineItems(){
                         Product = _foundLineItems[0].Product,
-                        Quantity = _foundLineItems[0].Quantity - _tempQuantity
+                        Quantity = _tempQuantity
                     });         
                     return MenuType.CustomerOrderMenu;
 
