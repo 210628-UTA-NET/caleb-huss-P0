@@ -16,28 +16,28 @@ namespace DL
         }
         public LineItems ChangeInventory(StoreFront p_store, LineItems p_lineitem)
         {
-            using (Entities.DemoDBContext _context = new Entities.DemoDBContext())
-            {
+            
                 // Get the specific inventory item needing to be changed
                 var result = (from i in _context.Inventories
                               where i.ProductId == p_lineitem.Product.ProductID &&
                               i.StoreNumber == p_store.StoreNumber
                               select i).SingleOrDefault();
                 result.Quantity = p_lineitem.Quantity; // change the quantity here
+
+                _context.Entry(result).State = EntityState.Modified;
                 _context.SaveChanges();
                 return new LineItems(){
                   Quantity = (int)result.Quantity,
                   Product = p_lineitem.Product
                 };
-            }
+            
 
         }
 
         public List<LineItems> GetAllInventory(StoreFront p_store)
         {
 
-            using (Entities.DemoDBContext _context = new Entities.DemoDBContext())
-            {
+            
                 // Get invertory of a certain store
                 var _storeInventory = (from i in _context.Inventories
                                        join p in _context.Products on i.ProductId equals p.ProductId
@@ -50,6 +50,7 @@ namespace DL
                                            Price = p.Price,
                                            Description = p.Description,
                                            Category = p.Category,
+                                           ProductID = p.ProductId
                                        }).ToList();
                 // takes mapped query and applies them to lineitem models
                 foreach (var item in _storeInventory)
@@ -61,20 +62,20 @@ namespace DL
                         Name = item.ProductName,
                         Price = (float)item.Price,
                         Description = item.Description,
-                        Category = item.Category
+                        Category = item.Category,
+                        ProductID = item.ProductID
                     };
                     _lineitem.Product = _item;
                     _inventory.Add(_lineitem);
                 }
 
                 return _inventory;
-            }
+            
         }
 
         public List<LineItems> GetSearchedInventory(StoreFront p_store, Products p_product)
         {
-            using (Entities.DemoDBContext _context = new Entities.DemoDBContext())
-            {
+            
                 // get selected inventory from store
                 if (p_product.Name != null)
                 {
@@ -91,6 +92,7 @@ namespace DL
                                                Price = p.Price,
                                                Description = p.Description,
                                                Category = p.Category,
+                                               ProductID = p.ProductId
                                            }).ToList();
                     // takes mapped query and applies them to lineitem models
                     foreach (var item in _storeInventory)
@@ -102,7 +104,8 @@ namespace DL
                             Name = item.ProductName,
                             Price = (float)item.Price,
                             Description = item.Description,
-                            Category = item.Category
+                            Category = item.Category,
+                            ProductID = item.ProductID
                         };
                         _lineitem.Product = _item;
                         _inventory.Add(_lineitem);
@@ -124,6 +127,7 @@ namespace DL
                                                Price = p.Price,
                                                Description = p.Description,
                                                Category = p.Category,
+                                               ProductID = p.ProductId
                                            }).ToList();
                     // takes mapped query and applies them to lineitem models
                     foreach (var item in _storeInventory)
@@ -135,7 +139,8 @@ namespace DL
                             Name = item.ProductName,
                             Price = (float)item.Price,
                             Description = item.Description,
-                            Category = item.Category
+                            Category = item.Category,
+                            ProductID = item.ProductID
                         };
                         _lineitem.Product = _item;
                         _inventory.Add(_lineitem);
@@ -158,6 +163,7 @@ namespace DL
                                                Price = p.Price,
                                                Description = p.Description,
                                                Category = p.Category,
+                                               ProductID = p.ProductId
                                            }).ToList();
                     // takes mapped query and applies them to lineitem models
                     foreach (var item in _storeInventory)
@@ -169,7 +175,8 @@ namespace DL
                             Name = item.ProductName,
                             Price = (float)item.Price,
                             Description = item.Description,
-                            Category = item.Category
+                            Category = item.Category,
+                            ProductID = item.ProductID
                         };
                         _lineitem.Product = _item;
                         _inventory.Add(_lineitem);
@@ -191,6 +198,7 @@ namespace DL
                                                Price = p.Price,
                                                Description = p.Description,
                                                Category = p.Category,
+                                               ProductID = p.ProductId
                                            }).ToList();
                     // takes mapped query and applies them to lineitem models
                     foreach (var item in _storeInventory)
@@ -202,7 +210,8 @@ namespace DL
                             Name = item.ProductName,
                             Price = (float)item.Price,
                             Description = item.Description,
-                            Category = item.Category
+                            Category = item.Category,
+                            ProductID = item.ProductID
                         };
                         _lineitem.Product = _item;
                         _inventory.Add(_lineitem);
@@ -216,7 +225,7 @@ namespace DL
 
 
 
-            }
+            
         }
     }
 }
