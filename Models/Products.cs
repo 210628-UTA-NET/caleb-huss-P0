@@ -9,7 +9,6 @@ namespace Models
         private string _desc = "No description set";
         private string _category = "No category set";
 
-
         public string Name
         {
             get
@@ -57,7 +56,7 @@ namespace Models
         public int ProductID { get; set; }
         public override string ToString()
         {
-            return $"Product Name: {Name}, Price: ${Price}\nDescription: {Description},\nCategory: {Category}";
+            return $"Product Name: {Name}, Price: ${Price}\nDescription: {Description},\nCategory: {Category}, ProductID: {ProductID}";
         }
     }
 }

@@ -56,6 +56,23 @@ namespace Models
         {
             _itemslist.Add(p_lineItem);
         }
+        public override string ToString()
+        {
+            string returner =($@"
+====== Store Info ======
+{StoreFront}
+====== Customer Info ======
+{Customer}
+====== Order Info =====
+Order number: {OrderNum}
+Total Cost: ${TotalPrice.ToString("0.00")}");
+            foreach (LineItems item in ItemsList)
+            {
+                returner += "\n" + item.ToString() ;
+            }
+            return returner;
+
+        }
 
     }
 }

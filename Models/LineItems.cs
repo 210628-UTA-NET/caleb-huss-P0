@@ -7,6 +7,7 @@ namespace Models
         private Products _product;
         private int _quantity;
 
+        public int LineItemID { get; set; }
         public Products Product
         {
             get
@@ -32,7 +33,9 @@ namespace Models
         public override string ToString()
         {
             
-            return $"{Product}, \nQuantity: {Quantity}";
+            return $@"
+==============
+{Product}, Quantity: {Quantity}";
         }
     }
 }
