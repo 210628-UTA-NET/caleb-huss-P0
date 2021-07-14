@@ -12,6 +12,9 @@ namespace UI
         EmployeeLoginMenu,
         EmployeeCornerMenu,
         EmployeeStoreSelectorMenu,
+        ViewStoreOrderHistoryMenu,
+        ReplenishInventoryMenu,
+        EmployeeViewInventoryMenu,
 
         Exit
     }
